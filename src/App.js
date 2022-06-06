@@ -1,22 +1,33 @@
-import Todo from './components/Todo';
-import React, {useState} from "react";
+import ListOfTodos from './components/ListOfTodos';
+import React, {createElement, useState} from "react";
+import Test from './components/Test';
 
 export const App = () => {
-  const [textBox, setTextBox] = useState("Enter Task Here")
+  const [todo, setTodo] = useState ()
+  const [todoArray, setTodoArray] = useState ([])
 
-  const submitHandler = (textBox) => {
-    if (textBox === "" || "Enter Task Here") {
-      return;
-    } else { (submitHandler(Todo))
-    }
+  const handleChange = (event) => {
+    console.log(event.target.value)
+    setTodo(event.target.value)
+    console.log("Todo: ", todo)
+  }
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+    const tempArray = [...todoArray]
+    tempArray.push(todo)
+    setTodoArray(tempArray)
+    setTodo("")
   }
 
   return (
     <div className='App'>
       <div className='container'>
-        <input textbox={textBox} />
-          <button setTextBox={submitHandler(Todo)}></button>
-        <listItem />
+        <input value={todo} placeholder="Enter Task Here" onChange={ handleChange }/>
+          <button onClick={ submitHandler }
+          >+</button>
+        <ListOfTodos todoArray={todoArray}/>
+        <Test />
       </div>
     </div>
   )
