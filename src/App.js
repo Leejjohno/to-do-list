@@ -1,22 +1,21 @@
-import { createElement } from 'react';
-import './App.css';
 import Todo from './components/Todo';
+import React, {useState} from "react";
 
-const [textBox, setTextBox] = useState("Enter Task Here")
+export const App = () => {
+  const [textBox, setTextBox] = useState("Enter Task Here")
 
-function App() {
   const submitHandler = (textBox) => {
     if (textBox === "" || "Enter Task Here") {
       return;
-    } else { (createElement(Todo))
+    } else { (submitHandler(Todo))
     }
   }
 
   return (
     <div className='App'>
       <div className='container'>
-        <Input textbox={textBox} />
-          <button createElement={createElement}></button>
+        <input textbox={textBox} />
+          <button setTextBox={submitHandler(Todo)}></button>
         <listItem />
       </div>
     </div>
